@@ -348,7 +348,112 @@
 </head>
 <body>
 
-    <h1>Flores Animadas</h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fbe3e8;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d32f2f;
+            margin-top: 20px;
+        }
+
+        .flower-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .flower {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Centro amarillo de la flor */
+        .flower .center {
+            width: 40px;
+            height: 40px;
+            background-color: #ffeb3b; /* Amarillo */
+            border-radius: 50%;
+            position: absolute;
+            z-index: 2;
+        }
+
+        /* Pétalos naranjas */
+        .flower .petal {
+            width: 25px;
+            height: 25px;
+            background-color: #ff9800; /* Naranja */
+            border-radius: 50%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Animación de los pétalos girando alrededor del centro */
+        .flower .petals {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: rotatePetals 5s linear infinite;
+        }
+
+        /* Tallos de las flores */
+        .flower .stem {
+            position: absolute;
+            bottom: -60px;
+            width: 8px;
+            height: 80px;
+            background-color: #4caf50; /* Verde */
+            border-radius: 5px;
+            z-index: 0;
+        }
+
+        /* Animación de los pétalos girando */
+        @keyframes rotatePetals {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Ubicación de los pétalos alrededor del centro */
+        .flower .petal:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .flower .petal:nth-child(2) { top: 14%; left: 85%; transform: translate(-50%, -50%); }
+        .flower .petal:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+        .flower .petal:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); }
+        .flower .petal:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+        .flower .petal:nth-child(6) { top: 85%; left: 15%; transform: translate(-50%, -50%); }
+        .flower .petal:nth-child(7) { top: 50%; left: 0; transform: translate(-50%, -50%); }
+        .flower .petal:nth-child(8) { top: 14%; left: 15%; transform: translate(-50%, -50%); }
+
+        button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c2185b;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>🌼 Flores Animadas 🌼</h1>
     <p>Haz clic para ver la sorpresa.</p>
 
     <!-- Botón para activar la sorpresa -->
@@ -356,50 +461,55 @@
 
     <!-- Contenedor de flores, inicialmente oculto -->
     <div class="flower-container" id="flower-container" style="display: none;">
+        
+        <!-- Flor 1 -->
         <div class="flower">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
             <div class="stem"></div>
+            <div class="center"></div>
+            <div class="petals">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
         </div>
+
+        <!-- Flor 2 -->
         <div class="flower">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
             <div class="stem"></div>
+            <div class="center"></div>
+            <div class="petals">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
         </div>
+
+        <!-- Flor 3 -->
         <div class="flower">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
             <div class="stem"></div>
+            <div class="center"></div>
+            <div class="petals">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div>
         </div>
-        <div class="flower">
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="petal"></div>
-            <div class="stem"></div>
-        </div>
+
     </div>
 
     <script>
@@ -408,7 +518,6 @@
             document.getElementById("flower-container").style.display = "flex";
         }
     </script>
-
 
 <audio autoplay controls>
     <!-- Reemplaza 'lady_gaga_bruno_mars_die_with_a_smile_official_music_video@nicooponcee.mp3' con la ruta de tu archivo de audio -->
