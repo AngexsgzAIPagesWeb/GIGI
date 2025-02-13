@@ -6,6 +6,7 @@
   In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
   Add your open source license, GitHub uses MIT license.
 -->
+![]https://github.com/AngexsgzAIPagesWeb/GIGI/blob/main/1.jpg
 
 # GitHub Pages
 
