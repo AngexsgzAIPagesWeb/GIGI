@@ -3,527 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>para Gissela</title>
+    <title>Die With A Smile - Letras Sincronizadas</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fbe3e8;
+            background: #f8f8f8;
+            color: #333;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-container {
+            background: linear-gradient(to bottom right, #f7c5d7, #ffafd2);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .album-cover {
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .song-info {
+            font-size: 1.8em;
+            margin-top: 10px;
+            color: #ff4081;
+            font-weight: bold;
+        }
+
+        .song-time {
+            font-size: 1.2em;
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .lyrics-container {
+            width: 100%;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lyrics-box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+            margin-bottom: 30px;
+        }
+
+        .lyrics p {
+            font-size: 1.5em;
+            margin: 15px 0;
+            opacity: 0.3;
+            transition: opacity 0.5s ease;
             color: #333;
         }
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 50px;
-            max-width: 1000px;
-            margin: auto;
+
+        .highlight {
+            opacity: 1;
+            color: #ff4081;
+            font-size: 2em;
+            font-weight: bold;
         }
-        .text {
-            flex: 1;
-            padding-right: 30px;
-            text-align: left;
-        }
-        h2 {
-            color: #d32f2f;
-            font-size: 28px;
-        }
-        p {
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-        .image {
-            flex: 1;
-            overflow: hidden;
+
+        .controls {
             display: flex;
             justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
         }
-        .image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
-            transition: transform 0.4s ease-in-out;
+
+        .controls button {
+            background-color: #ff4081;
+            color: white;
+            font-size: 1.6em;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
         }
-        .image img:hover {
+
+        .controls button:hover {
+            background-color: #ff65a1;
             transform: scale(1.1);
         }
-        .flower-container {
-            display: none;
-            text-align: center;
-            margin-top: 50px;
-            margin-bottom: 50px;
-        }
-        .flower {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            background-color: #ffeb3b; /* Color amarillo para el centro de la flor */
-            border-radius: 50%;
-            position: relative;
-            margin: 20px;
-            animation: flowerAnimation 1.5s ease-in-out infinite;
+
+        .controls button:active {
+            background-color: #ff2c55;
         }
 
-        /* Pétalos naranjas pequeños distribuidos alrededor del centro amarillo */
-        .flower .petal {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #ff9800; /* Color naranja para los pétalos */
-            border-radius: 50%;
-            animation: petalAnimation 2s infinite ease-in-out;
-        }
-        
-        /* Colocamos los pétalos en sus posiciones alrededor del centro */
-        .flower .petal:nth-child(1) {
-            top: 5px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50px);
-        }
-        .flower .petal:nth-child(2) {
-            top: 50%;
-            left: 5px;
-            transform: translateY(-50%) translateX(-50px);
-        }
-        .flower .petal:nth-child(3) {
-            top: 50%;
-            right: 5px;
-            transform: translateY(-50%) translateX(50px);
-        }
-        .flower .petal:nth-child(4) {
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%) translateY(50px);
-        }
-        .flower .petal:nth-child(5) {
-            top: 5px;
-            right: 5px;
-            transform: translateX(50px) translateY(-50px);
-        }
-        .flower .petal:nth-child(6) {
-            bottom: 5px;
-            right: 5px;
-            transform: translateX(50px) translateY(50px);
-        }
-        .flower .petal:nth-child(7) {
-            bottom: 5px;
-            left: 5px;
-            transform: translateX(-50px) translateY(50px);
-        }
-        .flower .petal:nth-child(8) {
-            top: 5px;
-            left: 5px;
-            transform: translateX(-50px) translateY(-50px);
-        }
-
-        /* Animación de pétalos para que giren suavemente */
-        @keyframes petalAnimation {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(180deg); }
-            100% { transform: scale(1) rotate(360deg); }
-        }
-
-        /* Animación de la flor para que se expanda y se contraiga */
-        @keyframes flowerAnimation {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.6; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .flower .stem {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            width: 8px;
-            height: 50px;
-            background-color: #4caf50; /* Color verde del tallo */
-            margin-left: -4px;
-        }
-
-        button {
-            background-color: #d32f2f;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 30px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #c2185b;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-            .text {
-                padding-right: 0;
+            to {
+                opacity: 1;
             }
         }
-    </style>
-</head>
-<body>
-
-    <h1>💖💫Bienvenida princesa hermosa💫💖</h1>
-
-
- <div class="container">
-        <div class="text">
-            <h2>Para Gissela 💖</h2>
-            <p><strong>Eres mi Universo</strong><br>
-            Gissela, mi amor, mi estrella encendida,<br>
-            mi dulce razón, mi faro en la vida.<br>
-            Si el mundo calla, si el tiempo se va,<br>
-            tu amor es eterno, mi única verdad.</p>
-        </div>
-        <div class="image">
-            <img src="1.jpg" alt="Foto de amor">
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="text">
-            <p><strong>Si Supieras</strong><br>
-            Si supieras lo que siento<br>
-            cuando dices mi nombre,<br>
-            cuando tus labios se acercan<br>
-            y el amor nos responde.</p>
-        </div>
-        <div class="image">
-            <img src="2.jpg" alt="Foto de amor">
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="text">
-            <p><strong>Amor Eterno</strong><br>
-            No hay distancia ni olvido,<br>
-            ni un segundo sin pensarte.<br>
-            Eres fuego, eres destino,<br>
-            eres mi forma de amarte.</p>
-        </div>
-        <div class="image">
-            <img src="3.jpg" alt="Foto de amor">
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="text">
-            <p><strong>Siempre Juntos</strong><br>
-            A tu lado todo es bello,<br>
-            cada día es un sueño,<br>
-            mi amor por ti no acaba,<br>
-            es eterno, es puro y verdadero.</p>
-        </div>
-        <div class="image">
-            <img src="4.jpg" alt="Foto de amor">
-        </div>
-    </div>
-
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fbe3e8;
-            text-align: center;
-        }
-
-        h1 {
-            color: #d32f2f;
-            margin-top: 20px;
-        }
-
-        .flower-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .flower {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            background-color: #ffeb3b; /* Color amarillo para el centro de la flor */
-            border-radius: 50%;
-            position: relative;
-            margin: 20px;
-        }
-
-        /* Pétalos naranjas fijos alrededor del centro amarillo */
-        .flower .petal {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #ff9800; /* Color naranja para los pétalos */
-            border-radius: 50%;
-            animation: rotatePetal 4s infinite ease-in-out;
-        }
-
-        /* Colocamos los pétalos en sus posiciones alrededor del centro */
-        .flower .petal:nth-child(1) {
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50px);
-        }
-        .flower .petal:nth-child(2) {
-            top: 50%;
-            left: 5px;
-            transform: translateY(-50%) translateX(-50px);
-        }
-        .flower .petal:nth-child(3) {
-            top: 50%;
-            right: 5px;
-            transform: translateY(-50%) translateX(50px);
-        }
-        .flower .petal:nth-child(4) {
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%) translateY(50px);
-        }
-        .flower .petal:nth-child(5) {
-            top: 5px;
-            right: 5px;
-            transform: translateX(50px) translateY(-50px);
-        }
-        .flower .petal:nth-child(6) {
-            bottom: 5px;
-            right: 5px;
-            transform: translateX(50px) translateY(50px);
-        }
-        .flower .petal:nth-child(7) {
-            bottom: 5px;
-            left: 5px;
-            transform: translateX(-50px) translateY(50px);
-        }
-        .flower .petal:nth-child(8) {
-            top: 5px;
-            left: 5px;
-            transform: translateX(-50px) translateY(-50px);
-        }
-
-        /* Animación de los pétalos para que giren sobre su propio eje */
-        @keyframes rotatePetal {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(180deg); }
-            100% { transform: scale(1) rotate(360deg); }
-        }
-
-        /* Tallos de las flores */
-        .flower .stem {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            width: 8px;
-            height: 50px;
-            background-color: #4caf50; /* Color verde para el tallo */
-            margin-left: -4px;
-        }
-
-        button {
-            background-color: #d32f2f;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 30px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #c2185b;
-        }
 
     </style>
 </head>
 <body>
+    <div class="main-container">
+        <img src="DIEWITHASMILE.png" alt="Album Cover" class="album-cover">
+        <div class="song-info">Die With A Smile - Bruno Mars, Laddy Gaga</div>
+        <div class="song-time" id="songTime">00:00 / 04:12</div>
+    </div>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fbe3e8;
-            text-align: center;
-        }
+    <audio id="song" src="lady_gaga_bruno_mars_die_with_a_smile_official_music_video@nicooponcee.mp3" preload="auto" autoplay></audio>
 
-        h1 {
-            color: #d32f2f;
-            margin-top: 20px;
-        }
-
-        .flower-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .flower {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Centro amarillo de la flor */
-        .flower .center {
-            width: 40px;
-            height: 40px;
-            background-color: #ffeb3b; /* Amarillo */
-            border-radius: 50%;
-            position: absolute;
-            z-index: 2;
-        }
-
-        /* Pétalos naranjas */
-        .flower .petal {
-            width: 25px;
-            height: 25px;
-            background-color: #ff9800; /* Naranja */
-            border-radius: 50%;
-            position: absolute;
-            z-index: 1;
-        }
-
-        /* Animación de los pétalos girando alrededor del centro */
-        .flower .petals {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            animation: rotatePetals 5s linear infinite;
-        }
-
-        /* Tallos de las flores */
-        .flower .stem {
-            position: absolute;
-            bottom: -60px;
-            width: 8px;
-            height: 80px;
-            background-color: #4caf50; /* Verde */
-            border-radius: 5px;
-            z-index: 0;
-        }
-
-        /* Animación de los pétalos girando */
-        @keyframes rotatePetals {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Ubicación de los pétalos alrededor del centro */
-        .flower .petal:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
-        .flower .petal:nth-child(2) { top: 14%; left: 85%; transform: translate(-50%, -50%); }
-        .flower .petal:nth-child(3) { top: 50%; left: 100%; transform: translate(-50%, -50%); }
-        .flower .petal:nth-child(4) { top: 85%; left: 85%; transform: translate(-50%, -50%); }
-        .flower .petal:nth-child(5) { top: 100%; left: 50%; transform: translate(-50%, -50%); }
-        .flower .petal:nth-child(6) { top: 85%; left: 15%; transform: translate(-50%, -50%); }
-        .flower .petal:nth-child(7) { top: 50%; left: 0; transform: translate(-50%, -50%); }
-        .flower .petal:nth-child(8) { top: 14%; left: 15%; transform: translate(-50%, -50%); }
-
-        button {
-            background-color: #d32f2f;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 30px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #c2185b;
-        }
-
-    </style>
-</head>
-<body>
-
-    <h1>🌼 Flores Animadas 🌼</h1>
-    <p>Haz clic para ver la sorpresa.</p>
-
-    <!-- Botón para activar la sorpresa -->
-    <button onclick="showFlowers()">Toca tu sorpresa</button>
-
-    <!-- Contenedor de flores, inicialmente oculto -->
-    <div class="flower-container" id="flower-container" style="display: none;">
-        
-        <!-- Flor 1 -->
-        <div class="flower">
-            <div class="stem"></div>
-            <div class="center"></div>
-            <div class="petals">
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-            </div>
+    <div class="lyrics-container">
+        <div class="lyrics-box">
+            <p id="prevLyric"></p>
+            <p id="currentLyric" class="highlight">💖</p>
+            <p id="nextLyric"></p>
         </div>
+    </div>
 
-        <!-- Flor 2 -->
-        <div class="flower">
-            <div class="stem"></div>
-            <div class="center"></div>
-            <div class="petals">
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-            </div>
-        </div>
-
-        <!-- Flor 3 -->
-        <div class="flower">
-            <div class="stem"></div>
-            <div class="center"></div>
-            <div class="petals">
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-            </div>
-        </div>
-
+    <div class="controls">
+        <button onclick="rewindSong()">↺</button>
+        <button onclick="togglePause()">||</button>
+        <button onclick="fastForwardSong()">↻</button>
     </div>
 
     <script>
-        // Función para mostrar las flores al hacer clic en el botón
-        function showFlowers() {
-            document.getElementById("flower-container").style.display = "flex";
+        const lyricsContainer = document.getElementById('lyricsContainer');
+        const songTimeDisplay = document.getElementById('songTime');
+        const song = document.getElementById('song');
+        let songCurrentTime = 0;
+        let songDuration = 252; // Duración de 4:12 en segundos
+        
+        const lyrics = [
+    { "time": 3, "text": "Ooh" },
+    { "time": 8, "text": "I, I just woke up from a dream" },
+    { "time": 15, "text": "Where you and I had to say goodbye" },
+    { "time": 19, "text": "And I don't know what it all means" },
+    { "time": 24, "text": "But since I survived, I realized" },
+    { "time": 29, "text": "Wherever you go, that's where I'll follow" },
+    { "time": 34, "text": "Nobody's promised tomorrow" },
+    { "time": 38, "text": "So I'ma love you every night like it's the last night" },
+    { "time": 42, "text": "Like it's the last night" },
+    { "time": 47, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 52, "text": "If the party was over and our time on Earth was through" },
+    { "time": 57, "text": "I'd wanna hold you just for a while and die with a smile" },
+    { "time": 62, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 67, "text": "Ooh" },
+    { "time": 72, "text": "Oh, lost, lost in the words that we scream" },
+    { "time": 77, "text": "I don't even wanna do this anymore" },
+    { "time": 82, "text": "'Cause you already know what you mean to me" },
+    { "time": 87, "text": "And our love's the only war worth fighting for" },
+    { "time": 92, "text": "Wherever you go, that's where I'll follow" },
+    { "time": 97, "text": "Nobody's promised tomorrow" },
+    { "time": 102, "text": "So I'ma love you every night like it's the last night" },
+    { "time": 107, "text": "Like it's the last night" },
+    { "time": 112, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 117, "text": "If the party was over and our time on Earth was through" },
+    { "time": 122, "text": "I'd wanna hold you just for a while and die with a smile" },
+    { "time": 127, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 132, "text": "Right next to you" },
+    { "time": 137, "text": "Next to you" },
+    { "time": 142, "text": "Right next to you" },
+    { "time": 147, "text": "Oh-oh, oh" },
+    { "time": 152, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 157, "text": "If the party was over and our time on Earth was through" },
+    { "time": 162, "text": "I'd wanna hold you just for a while and die with a smile" },
+    { "time": 167, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 172, "text": "If the world was ending, I'd wanna be next to you" },
+    { "time": 177, "text": "Ooh" },
+    { "time": 182, "text": "I'd wanna be next to you" }
+        ];
+        
+        let currentIndex = 0;
+
+        function updateLyrics() {
+            songCurrentTime = song.currentTime;
+            let minutes = Math.floor(songCurrentTime / 60);
+            let seconds = Math.floor(songCurrentTime % 60);
+            songTimeDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} / 04:12`;
+
+            const index = findLyricIndex(songCurrentTime);
+
+            if (index !== currentIndex) {
+                currentIndex = index;
+                document.getElementById('prevLyric').textContent = currentIndex > 0 ? lyrics[currentIndex - 1].text : "";
+                document.getElementById('currentLyric').textContent = lyrics[currentIndex].text;
+                document.getElementById('nextLyric').textContent = currentIndex + 1 < lyrics.length ? lyrics[currentIndex + 1].text : "";
+            }
         }
+
+        function togglePause() {
+            if (song.paused) {
+                song.play();
+            } else {
+                song.pause();
+            }
+        }
+
+        function rewindSong() {
+            song.currentTime -= 10;
+            updateLyrics();
+        }
+
+        function fastForwardSong() {
+            song.currentTime += 10;
+            updateLyrics();
+        }
+
+        function findLyricIndex(currentTime) {
+            for (let i = 0; i < lyrics.length; i++) {
+                if (currentTime < lyrics[i].time) {
+                    return i - 1;
+                }
+            }
+            return lyrics.length - 1;
+        }
+
+        setInterval(updateLyrics, 50);
     </script>
-
-<audio autoplay controls>
-    <!-- Reemplaza 'lady_gaga_bruno_mars_die_with_a_smile_official_music_video@nicooponcee.mp3' con la ruta de tu archivo de audio -->
-    <source src="lady_gaga_bruno_mars_die_with_a_smile_official_music_video@nicooponcee.mp3" type="audio/mp3">
-    Tu navegador no soporta el elemento de audio.
-</audio>
-
 </body>
 </html>
